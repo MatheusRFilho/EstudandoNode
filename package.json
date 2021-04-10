@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MatheusRFilho/Estudando-Node/issues"
   },
-  "homepage": "https://github.com/MatheusRFilho/Estudando-Node#readme"
+  "homepage": "https://github.com/MatheusRFilho/Estudando-Node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

@@ -1,8 +1,12 @@
+const Sessions = require('../models/sessions')
+
 module.exports = app => {
     app.get('/atendimentos', (req, res) => res.send('Você esta na rota de atendimentos GET'))
 
     app.post('/atendimentos', (req, res) => {
-        console.log(req.body)
-        res.send('Voce esta na rota de atendimentos realizando um post')
+        const session = req.body
+
+        Sessions.create(session)
+        res.status(201).send('Atendimento criado com sucesso')
     })
 }

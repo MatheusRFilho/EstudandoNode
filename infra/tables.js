@@ -6,7 +6,7 @@ class Tables {
     }
 
     createSessions() {
-        const sql = 'CREATE TABLE IF NOT EXISTS Session (id int NOT NULL AUTO_INCREMENT, client varchar(50) NOT NULL, pet varchar(20), service varchar(20) NOT NULL, status varchar(20) NOT NULL, obs text, PRIMARY KEY(ID) )'
+        const sql = 'CREATE TABLE IF NOT EXISTS Session (id int NOT NULL AUTO_INCREMENT, client varchar(50) NOT NULL, pet varchar(20), service varchar(20) NOT NULL, date datetime NOT NULL, createdDate datetime NOT NULL, status varchar(20) NOT NULL, obs text, PRIMARY KEY(ID) )'
         this.connection.query(sql, (error) => {
             if (error) {
                 console.log(error)

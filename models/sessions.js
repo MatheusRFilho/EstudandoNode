@@ -32,15 +32,72 @@ class Sessions {
         } else {
             const sessionWithDate = {...session, createdDate, date}
             const sql = 'INSERT INTO Session SET ?'
-            connection.query(sql, sessionWithDate, (error, result) => {
+            connection.query(sql, sessionWithDate, (error) => {
                 if (error) {
                     console.log(error)
                     res.status(400).json(error)
                 } else {
-                    res.status(201).json(result)
+                    res.status(201).json(session)
                 }
             })
         }
+    }
+
+    index(res){
+        const sql = 'SELECT * FROM Session'
+
+        connection.query(sql, (error, result) => {
+            if (error) {
+                console.log(error)
+                res.status(400).json(error)
+            } else {
+                res.status(200).json(result)
+            }
+        })
+    }
+
+    selectOne(res, id){
+        const sql = `SELECT * FROM Session WHERE id = ${id}`
+
+        connection.query(sql, (error, result) => {
+            const item = result[0]
+            if (error) {
+                console.log(error)
+                res.status(400).json(error)
+            } else {
+                res.status(200).json(item)
+            }
+        })
+    }
+
+    update(res, id, values) {
+        if(values.date) {
+            values.date = moment(values.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        }
+        const sql = 'UPDATE Session Set ? WHERE id = ?'
+
+        connection.query(sql, [values, id], (error, result) => {
+            // const item = result[0]
+            if (error) {
+                console.log(error)
+                res.status(400).json(error)
+            } else {
+                res.status(200).json({...values, id})
+            }
+        })
+    }
+
+    delete(res, id){
+        const sql = 'DELETE FROM Session WHERE id = ?'
+
+        connection.query(sql, id, (error) => {
+            if (error) {
+                console.log(error)
+                res.status(400).json(error)
+            } else {
+                res.status(200).json({id})
+            }
+        })
     }
 }
 

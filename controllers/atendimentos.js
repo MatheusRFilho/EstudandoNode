@@ -6,7 +6,6 @@ module.exports = app => {
     app.post('/atendimentos', (req, res) => {
         const session = req.body
 
-        Sessions.create(session)
-        res.status(201).send('Atendimento criado com sucesso')
+        Sessions.create(session, res)
     })
 }

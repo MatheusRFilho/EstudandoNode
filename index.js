@@ -1,7 +1,11 @@
-const express = require('express');
+const express = require('express')
+const consign = require('consign')
 
 const app = express()
 
+consign()
+    .include('controllers')
+    .into(app)
+    
 app.listen(3000, () => console.log('[Server running - 3000]'))
 
-app.get('/atendimentos', (req, res) => res.send('Você esta na rota de atendimentos'))
